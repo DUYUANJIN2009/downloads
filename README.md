@@ -1,1 +1,2 @@
-# shang_yu_foreign_language_school2
+# shang-yu-foreign-language-school
+shang-yu-foreign-language-school
