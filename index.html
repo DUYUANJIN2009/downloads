@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>上虞外国语学校-2022级13班-毕业纪念</title>
+    <!-- 引入 Font Awesome 图标库 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'KaiTi', '楷体', serif; /* 设置楷体字体 */
@@ -14,7 +16,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between; /* 调整以适应底部空间 */
             height: 100vh;
         }
         h1 {
@@ -48,9 +50,14 @@
             background-color: #0056b3;
         }
         .download-icon {
-            width: 30px;
-            height: 30px;
             margin-right: 10px;
+            font-size: 1.5rem; /* 调整图标大小 */
+        }
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.8rem;
+            color: #666;
         }
     </style>
 </head>
@@ -65,7 +72,7 @@
            class="download-link" 
            target="_blank" 
            rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluency/48/000000/download.png" alt="下载图标" class="download-icon">
+            <i class="fas fa-download download-icon"></i>
             纪念册高清版下载地址
         </a>
         
@@ -74,9 +81,23 @@
            class="download-link" 
            target="_blank" 
            rel="noopener noreferrer">
-            <img src="https://img.icons8.com/fluency/48/000000/download.png" alt="下载图标" class="download-icon">
+            <i class="fas fa-download download-icon"></i>
             纪念册低清压缩版下载地址
         </a>
+        
+        <!-- 123云盘照片视频下载链接 -->
+        <a href="https://www.123684.com/s/lMWMjv-RYuad" 
+           class="download-link" 
+           target="_blank" 
+           rel="noopener noreferrer">
+            <i class="fas fa-cloud-download-alt download-icon"></i>
+            照片视频下载-123云盘
+        </a>
     </div>
+    
+    <!-- 底部版权信息 -->
+    <footer>
+        由杜源锦制作
+    </footer>
 </body>
 </html>
