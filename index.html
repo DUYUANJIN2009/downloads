@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -13,10 +12,10 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         h1 {
             font-size: 2.5rem;
@@ -25,11 +24,39 @@
         p {
             font-size: 1.2rem;
             text-align: center;
+            margin-bottom: 2rem;
+        }
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 50px; /* 椭圆按钮效果 */
+            transition: background-color 0.3s ease;
+        }
+        .download-link:hover {
+            background-color: #0056b3;
+        }
+        .download-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <h1>上虞外国语学校-2022级13班-毕业纪念</h1>
     <p>上虞外国语学校-2022级13班-毕业纪念</p>
+    
+    <!-- 下载链接 -->
+    <a href="https://github.com/DUYUANJIN2009/duyuanjin/releases/download/202213sywgyxx/FULL.2025.4.4.11.34.22_._2022.13.pptx" 
+       class="download-link" 
+       target="_blank" 
+       rel="noopener noreferrer">
+        <img src="https://img.icons8.com/fluency/48/000000/download.png" alt="下载图标" class="download-icon">
+        纪念册高清版下载地址
+    </a>
 </body>
 </html>
