@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #87CEEB, white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px; /* 圆角效果 */
+        }
+
+        .text-container span {
+            opacity: 0;
+            font-size: 4em;
+            font-weight: bold;
+            margin: 0 5px;
+            animation: appear 0.5s forwards;
+        }
+
+        @keyframes appear {
+            to { opacity: 1; }
+        }
+
+        #countdown {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">
+        <div class="text-container"></div>
+        <div id="countdown">10</div>
+    </div>
+
+    <script>
+        const letters = ['H','I','P','P','O'];
+        const container = document.querySelector('.text-container');
+        
+        // 文字逐个出现
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+                const span = document.createElement('span');
+                span.textContent = letter;
+                container.appendChild(span);
+            }, index * 200);
+        });
+
+        // 倒计时功能
+        let time = 10;
+        const countdown = setInterval(() => {
+            time--;
+            document.getElementById('countdown').textContent = time;
+            if(time <= 0) {
+                clearInterval(countdown);
+                window.location.href = 'down.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
