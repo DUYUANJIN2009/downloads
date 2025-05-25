@@ -1,36 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>加载中...</title>
     <style>
+        /* 基础样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
         #loader {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: linear-gradient(180deg, #87CEEB, white);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 10px; /* 圆角效果 */
+            z-index: 1000;
+        }
+
+        /* 文字动画容器 */
+        .text-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 90vw;
         }
 
         .text-container span {
             opacity: 0;
-            font-size: 4em;
+            font-size: 8vw;
             font-weight: bold;
-            margin: 0 5px;
+            margin: 0 1vw;
             animation: appear 0.5s forwards;
+            transform: translateZ(0); /* 启用硬件加速 */
         }
 
-        @keyframes appear {
-            to { opacity: 1; }
-        }
-
+        /* 倒计时样式 */
         #countdown {
-            font-size: 2em;
-            margin-top: 20px;
+            font-size: 5vw;
+            margin-top: 5vh;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 动画定义 */
+        @keyframes appear {
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 电脑端适配 */
+        @media (min-width: 768px) {
+            .text-container span {
+                font-size: 4rem;
+                margin: 0 15px;
+            }
+
+            #countdown {
+                font-size: 2rem;
+            }
+        }
+
+        /* 手机横屏适配 */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .text-container {
+                flex-direction: row;
+                margin-bottom: 2vh;
+            }
+            
+            #countdown {
+                margin-top: 2vh;
+            }
+        }
+
+        /* 超小屏幕适配 */
+        @media (max-width: 320px) {
+            .text-container span {
+                font-size: 7vw;
+            }
         }
     </style>
 </head>
@@ -41,28 +98,58 @@
     </div>
 
     <script>
+        // 性能优化：预加载目标页面
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = 'down.html';
+        link.as = 'document';
+        document.head.appendChild(link);
+
+        // 动画文字配置
         const letters = ['H','I','P','P','O'];
         const container = document.querySelector('.text-container');
         
-        // 文字逐个出现
+        // 文字逐个出现动画
         letters.forEach((letter, index) => {
             setTimeout(() => {
                 const span = document.createElement('span');
                 span.textContent = letter;
+                span.style.animationDelay = `${index * 0.2}s`;
                 container.appendChild(span);
             }, index * 200);
         });
 
         // 倒计时功能
         let time = 10;
+        const countdownElement = document.getElementById('countdown');
         const countdown = setInterval(() => {
             time--;
-            document.getElementById('countdown').textContent = time;
+            countdownElement.textContent = time;
+            
             if(time <= 0) {
                 clearInterval(countdown);
-                window.location.href = 'down.html';
+                // 添加页面过渡效果
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    window.location.href = 'down.html';
+                }, 500);
             }
         }, 1000);
+
+        // 触摸设备优化
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = new Date().getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // 防止缩放
+        document.addEventListener('gesturestart', (e) => {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
