@@ -2,8 +2,10 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>22级13班纪念册download</title>
     <style>
+        /* 基础样式 */
         body {
             margin: 0;
             padding: 0;
@@ -16,10 +18,13 @@
         .container {
             text-align: center;
             padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        /* 标题响应式 */
         .main-title {
-            margin: 40px 0;
+            margin: 5vh 0;
         }
 
         .title-1 {
@@ -40,16 +45,18 @@
             margin: 10px 0;
         }
 
+        /* 按钮响应式 */
         .btn {
             display: block;
-            width: 240px;
+            width: 80%;
+            max-width: 240px;
             height: 60px;
             border-radius: 30px;
             margin: 20px auto;
             line-height: 60px;
             text-decoration: none;
             font-weight: bold;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
         }
 
         .btn-primary {
@@ -62,13 +69,18 @@
             color: #333;
         }
 
+        /* 图片预览 */
         .preview {
-            margin-top: 40px;
+            margin: 5vh auto 15vh;
+            padding: 0 20px;
         }
 
         .preview img {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .preview-text {
@@ -77,16 +89,18 @@
             margin: 10px 0;
         }
 
+        /* 底部信息 */
         footer {
-            position: absolute;
+            position: fixed;
             bottom: 0;
             width: 100%;
             text-align: center;
-            padding: 20px;
-            color: #666;
+            padding: 15px;
+            background: rgba(255,255,255,0.9);
+            z-index: 100;
         }
 
-        /* 弹窗样式 */
+        /* 弹窗响应式 */
         .modal {
             position: fixed;
             top: 0;
@@ -98,19 +112,70 @@
             justify-content: center;
             align-items: center;
             z-index: 999;
+            padding: 15px;
         }
 
         .modal-content {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 10px;
-            text-align: center;
+            width: 90%;
+            max-width: 400px;
         }
 
         .password-input {
-            margin: 20px 0;
-            padding: 8px;
-            width: 200px;
+            width: 100%;
+            max-width: 250px;
+            margin: 20px auto;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        /* 媒体查询 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .title-1 {
+                font-size: 36px;
+            }
+            
+            .title-2 {
+                font-size: 18px;
+            }
+            
+            .btn {
+                width: 90%;
+                height: 55px;
+                line-height: 55px;
+                font-size: 15px;
+            }
+            
+            .preview {
+                margin: 8vh auto;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title-1 {
+                font-size: 28px;
+            }
+            
+            .btn {
+                height: 50px;
+                line-height: 50px;
+                font-size: 14px;
+            }
+            
+            footer {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -119,7 +184,7 @@
     <div class="modal" id="serverModal">
         <div class="modal-content">
             <h2>服务器正常</h2>
-            <button class="btn" onclick="closeServerModal()" style="margin-top: 20px;">确定</button>
+            <button class="btn btn-primary" onclick="closeServerModal()" style="margin-top: 20px;">确定</button>
         </div>
     </div>
 
@@ -147,8 +212,8 @@
     <div class="modal" id="passwordModal" style="display: none;">
         <div class="modal-content">
             <h2>请输入密码</h2>
-            <input type="password" class="password-input" id="passwordInput">
-            <button class="btn" onclick="checkPassword()">确定</button>
+            <input type="password" class="password-input" id="passwordInput" placeholder="输入6-12位密码">
+            <button class="btn btn-secondary" onclick="checkPassword()">确定</button>
         </div>
     </div>
 
@@ -176,6 +241,16 @@
                 document.getElementById('passwordInput').value = '';
             }
         }
+
+        // 触摸设备优化
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.style.opacity = '0.8';
+            });
+            btn.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            });
+        });
     </script>
 </body>
 </html>
